@@ -13,6 +13,7 @@ body {
     width: 640px;
     height: 640px;
     margin: auto;
+    margin-top: 2.5%;
     display: flex;
     flex-wrap: wrap;
     perspective: 1000px;
@@ -36,7 +37,6 @@ body {
     transition: transform .2s;
 }
 
-
 .memory-card.flip {
     transform: rotateY(180deg);
 }
@@ -53,6 +53,7 @@ body {
 }
 
 /* Girando a parte da frente para ser mostrado */
-.front-face{
+
+.front-face {
     transform: rotateY(180deg);
 }

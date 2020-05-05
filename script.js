@@ -1,32 +1,30 @@
 const cards = document.querySelectorAll('.memory-card');
 
 let hasFlippedCard = false;
-let firstCard, secondCard;
 let lockBoard = false
+let firstCard, secondCard;
 
 function flipCard() {
     // trancando o click em outros cards
     if (lockBoard) return;
 
     // trancando duplo click
-    if (this === firstCard) return
+    if (this === firstCard) return;
 
-    // se a classe existir, remove, senão adicione
-    this.classList.toggle('flip')
+    // adicionando uma classe
+    this.classList.add('flip');
 
     if (!hasFlippedCard) {
         // first click
         hasFlippedCard = true;
         firstCard = this;
-        return;
-    } else {
-        // second click
-        hasFlippedCard = false;
-        secondCard = this;
-        console.log(firstCard)
 
-        checkForMatch()
+        return;
     }
+    // second click
+    secondCard = this
+
+    checkForMatch();
 }
 
 function checkForMatch() {
@@ -38,6 +36,8 @@ function checkForMatch() {
 function disableCards() {
     firstCard.removeEventListener('click', flipCard)
     secondCard.removeEventListener('click', flipCard)
+
+    resetBoard()
 }
 
 function unFlipCards() {
@@ -53,17 +53,14 @@ function unFlipCards() {
 }
 
 function resetBoard() {
-    hasFlippedCard = false
-    lockBoard = false
-    firstCard = null
-    secondCard = null
+    [hasFlippedCard, lockBoard, firstCard, secondCard] = [false, false, null, null]
 }
 
 // Criando uma função auto invocada
 (function shuffle() {
-    cards.forEach(cad => {
-        let ramdomPosition = Math.floor(Math.ramdom() * 12);
-        cards.style.order = ramdomPosition
+    cards.forEach(card => {
+        let ramdomPosition = Math.floor(Math.random() * 12);
+        card.style.order = ramdomPosition
     });
 })();
 
