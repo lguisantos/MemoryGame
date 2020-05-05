@@ -48,13 +48,15 @@ function unFlipCards() {
         firstCard.classList.remove('flip')
         secondCard.classList.remove('flip')
 
-        lockBoard = false
+        resetBoard()
     }, 1000)
 }
 
 function resetBoard() {
-    hasFlippedCard, lockBoard = [false, false]
-    firstCard, secondCard = [null, null]
+    hasFlippedCard = false
+    lockBoard = false
+    firstCard = null
+    secondCard = null
 }
 
 // Criando uma função auto invocada
@@ -62,7 +64,7 @@ function resetBoard() {
     cards.forEach(cad => {
         let ramdomPosition = Math.floor(Math.ramdom() * 12);
         cards.style.order = ramdomPosition
-    })
-})()
+    });
+})();
 
 cards.forEach(cards => cards.addEventListener('click', flipCard))
